@@ -5,7 +5,7 @@ import sqlite3
 def main():
     with sqlite3.connect("S30 ETL Assignment.db") as conn:
         #Purely SQL query to get the desired output
-        total_quantity_query = '''SELECT customer_id, item_name, age, sum(quantity) as quantity
+        total_quantity_query = '''SELECT customer_id as Customer, item_name as Item, age as Age, sum(quantity) as Quantity
         from (SELECT sales_id,quantity,item_name from orders 
         INNER JOIN items 
         ON items.item_id = orders.item_id) as OrderItems

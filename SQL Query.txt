@@ -1,4 +1,4 @@
-SELECT customer_id, item_name, age, sum(quantity) as quantity
+SELECT customer_id as Customer, item_name as Item, age as Age, sum(quantity) as Quantity
 from (SELECT sales_id,quantity,item_name from orders 
         INNER JOIN items 
         ON items.item_id = orders.item_id) as OrderItems
