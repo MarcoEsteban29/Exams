@@ -1,0 +1,10 @@
+SELECT customer_id, item_name, age, sum(quantity) as quantity
+from (SELECT sales_id,quantity,item_name from orders 
+        INNER JOIN items 
+        ON items.item_id = orders.item_id) as OrderItems
+INNER JOIN (SELECT sales_id, customers.customer_id as customer_id, age from customers
+        INNER JOIN sales 
+        ON customers.customer_id = sales.customer_id) as SalesCustomers
+ON OrderItems.sales_id = SalesCustomers.sales_id
+WHERE (age >= 18 AND age <= 35) and (quantity > 0 and quantity != '')
+GROUP BY customer_id, item_name, age
